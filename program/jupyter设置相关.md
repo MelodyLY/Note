@@ -42,6 +42,51 @@
     conda install ipykernel
     python -m ipykernel install --user --name tf1 --display-name "tf1"
     ```
+    解决重启实例后新建虚拟环境相关依赖被重置问题
+    
+    ```shell
+    # 切换至powerop账户
+    su powerop
+     
+    # 设置proxy 代理让conda可以访问外网
+    export http_proxy=http://proxygate2.ctripcorp.com:8080
+    export https_proxy=http://proxygate2.ctripcorp.com:8080
+     
+    # 新建conda 虚拟环境，例如 yolov5
+    conda create -p /home/powerop/work/conda/envs/yolov5
+     
+    # 配置 conda shell
+    conda init bash
+     
+    # 重启shell
+    bash
+     
+    # 激活环境
+    conda activate /home/powerop/work/conda/envs/yolov5
+     
+    # 将python 依赖安装在该虚拟环境, 对应包都会保存在 /home/powerop/work/conda/envs/yolov5
+    pip install -r requirements.txt
+     
+    ## developing and training
+     
+    # 也可以将conda虚拟环境添加到jupyter notebook中，在虚拟环境激活的情况下执行下列命令：（实例重启之后，需要重新激活虚拟环境并且执行下列命令）：
+    pip install ipykernel
+    python -m ipykernel install --user --name yolov5 --display-name "conda-yolov5"
+     
+    # 打开jupyter notebook，可以选择kernel 类型就会多一个选项 conda-yolov5，这样启动的book就是会有对应虚拟环境的所有依赖
+     
+     
+    # 退出虚拟环境
+    conda deactivate
+     
+    # 在需要迁移或者冻结虚拟环境是，可以保存为一个yml文件
+    conda env export -n ENV_NAME > environment.yml
+     
+    # 更换实例或者需要恢复环境则直接从yml文件恢复
+    conda env create -f environment.yml
+    ```
+    
+    
 
 # pip配置
 
