@@ -30,8 +30,10 @@
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
     conda config --set show_channel_urls yes
 
+    #pip命令
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名
     ```
-
+    
 *   创建虚拟环境
     ```shell
     #创建环境
@@ -93,6 +95,16 @@
 *   源配置
     ```shell
     pip install -i [source_url] [package_name]
-
     ```
-
+    
+    ```shell
+    # 安装插件
+    
+    - 扩展插件
+    
+      ```sh
+      pip install jupyter_contrib_nbextensions
+      jupyter contrib nbextension install --user
+    ```
+    
+    
