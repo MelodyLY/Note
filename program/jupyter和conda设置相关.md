@@ -1,4 +1,4 @@
-\[toc]
+[TOC]
 
 # pyspark配置
 
@@ -20,7 +20,7 @@
 
 # conda配置
 
-*   源配置
+*   源配置([参考链接](https://mirrors4.tuna.tsinghua.edu.cn/help/anaconda/))
     ```shell
     conda config --show-sources #查看当前使用源
     conda config --remove channels 源名称或链接 #删除指定源
@@ -32,6 +32,7 @@
     
     #pip命令
     pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple #永久设置
     ```
     
 *   创建虚拟环境
