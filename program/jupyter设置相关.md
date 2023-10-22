@@ -38,11 +38,22 @@
     ```shell
     #创建环境
     conda create -n tf1 python=3.6
+    #查看环境列表
+    conda info -e
     source activate tf1
     # conda deactivate #退出虚拟环境
     #在jupyter notebook中创建相关环境的内核
     conda install ipykernel
     python -m ipykernel install --user --name tf1 --display-name "tf1"
+    #查看内核列表
+    jupyter kernelspec list
+    
+    #删除环境
+    conda remove -n oldname --all
+    #环境重命名
+    conda rename [-h] [-n ENVIRONMENT | -p PATH] [--force] [-d] destination
+    #删除内核
+    jupyter kernelspec remove kernelname
     ```
     解决重启实例后新建虚拟环境相关依赖被重置问题
     
