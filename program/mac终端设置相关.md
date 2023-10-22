@@ -32,7 +32,7 @@ echo export PATH="/opt/homebrew/anaconda3/bin:$PATH" >> ~/.zshrc
 source ~/.zshrc
 ```
 
-设置源参考[jupyter和conda设置相关](./jupyter和conda设置相关)
+设置源参考[jupyter和conda设置相关](./jupyter和conda设置相关.md)
 
 ## tensorflow-gpu
 
