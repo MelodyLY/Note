@@ -65,3 +65,13 @@ du -h --max-depth=0 *
 df -h
 ```
 
+# git相关
+
+## 设置非默认私钥
+
+```sh
+vim ~/.ssh/config
+#填入以下内容
+IdentityFile ~/.ssh/mgtv_gitlab_ed25519
+```
+

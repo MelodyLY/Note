@@ -64,4 +64,16 @@ conda config --env --set subdir osx-64
 conda install python=3.7
 ```
 
- 
+ # 设置相关
+
+## 文件夹设置
+
+```shell
+#显示隐藏的文件夹
+sudo chflags nohidden /opt
+#隐藏文件夹
+sudo chflags hidden opt
+```
+
+
+
