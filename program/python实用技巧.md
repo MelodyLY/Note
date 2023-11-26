@@ -59,3 +59,48 @@ def sigmoid(z):
     return .5 * (1 + np.tanh(.5 * z))
 ```
 
+# 日志打印设置
+
+```python
+import coloredlogs
+import logging
+import sys
+
+logger = logging.getLogger()
+
+# 日志格式
+LOG_FORMAT = "%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s"
+
+# 配色方案
+DEFAULT_FIELD_STYLES = dict(
+    asctime=dict(color='green'),
+    hostname=dict(color='magenta'),
+    levelname=dict(color='blue', bold=True),
+    name=dict(color='blue'),
+    programname=dict(color='cyan'),
+    username=dict(color='yellow'),
+)
+DEFAULT_LEVEL_STYLES = dict(
+    spam=dict(color='green', faint=True),
+    debug=dict(color='green'),
+    verbose=dict(color='blue'),
+    info=dict(),
+    notice=dict(color='magenta'),
+    warning=dict(color='yellow'),
+    success=dict(color='green', bold=True),
+    error=dict(color='red'),
+    critical=dict(color='red', bold=True),
+  
+coloredlogs.install(level=logging.DEBUG, logger=logger, isatty=True,
+                    fmt="%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s",
+                    stream=sys.stdout,
+                    field_styles=DEFAULT_FIELD_STYLES,
+                    datefmt='%Y-%m-%d %H:%M:%S')
+
+logger.debug("this is a debugging message")
+logger.info("this is an informational message")
+logger.warning("this is a warning message")
+logger.error("this is an error message")
+logger.critical("this is a critical message")
+```
+
