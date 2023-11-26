@@ -72,6 +72,7 @@ df -h
 ```sh
 vim ~/.ssh/config
 #填入以下内容
-IdentityFile ~/.ssh/mgtv_gitlab_ed25519
+IdentityFile ~/.ssh/xxxx_ed25519#私钥文件地址
+#可按上述格式依次新增多个私钥文件地址
 ```
 
