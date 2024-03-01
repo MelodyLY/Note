@@ -76,3 +76,60 @@ IdentityFile ~/.ssh/xxxx_ed25519#私钥文件地址
 #可按上述格式依次新增多个私钥文件地址
 ```
 
+
+
+# 用户权限类
+
+## 用户和密码设置
+
+```shell
+# 创建用户
+sudo adduser xxx
+# 重置密码
+sudo passwd xxx
+# 删除用户
+sudo userdel xxx
+# 查看用户列表
+sudo cat /etc/passwd
+# 查看组
+sudo groups xxx
+# 更改组
+sudo usermod -g root xxx # 更改组为root
+# 设置sudo权限
+sudo vim /etc/sudoers
+```
+
+sudo权限设置详细参考https://www.cnblogs.com/numa2022/articles/17874199.html
+
+## 挂载目录
+
+```shell
+# 假设用户目录容量比较有限，可以在专门存放数据的目录比如/data下创建用户目录，然后在/home中建立软链接
+# 如果/home已经有用户目录，可以先移动到/data中
+sudo mv /home/luoyong /data/home
+ln -s /data/home/luoyong /home/luoyong #建立软链接
+```
+
+# 并行调度
+
+```shell
+d=`date +%Y%m%d%H%M%S`
+code=$RANDOM
+echo $d
+echo $code
+sql_file=$1
+start_date=$2
+end_date=$3
+# 分割字符串，获取文件名
+file_name=`echo $sql_file | awk '{split($0,a,"."); print a[1]}'`
+echo ${file_name}_${start_date}_${end_date}
+# 日期遍历
+while [[ "${start_date}" -le "${end_date}" ]];
+do
+    echo ${start_date}
+    # 通过beeline执行脚本
+    nohup beeline -u jdbc:hive2://xx.xx.xx.xx:20013/mgst_rec -n username -p password -f $sql_file --hivevar pday=$start_date > /home/luoyong/log/hive/hive_${file_name}_${start_date}_${2}_${3}_${d}_${code}.log 2>&1 &
+    start_date=`date -d "${start_date} 1day" +%Y%m%d`
+done
+```
+
