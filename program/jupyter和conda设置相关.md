@@ -20,7 +20,7 @@
 
 # conda配置
 
-*   源配置([参考链接](https://mirrors4.tuna.tsinghua.edu.cn/help/anaconda/))
+*   源配置（[清华源](https://mirrors4.tuna.tsinghua.edu.cn/help/anaconda/)）或者（[阿里云](https://developer.aliyun.com/mirror/anaconda/?spm=a2c6h.25603864.0.0.6f1519e4eJsITd)）
     ```shell
     conda config --show-sources #查看当前使用源
     conda config --remove channels 源名称或链接 #删除指定源
@@ -28,8 +28,13 @@
     #清华源
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
     conda config --set show_channel_urls yes
-    
+    # 获取直接修改配置文件
+    vim ~/.condarc
+    # 修改之后清除索引缓存
+    conda clean -i
     #pip命令
     pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple #永久设置
@@ -108,12 +113,35 @@
     ```shell
     pip install -i [source_url] [package_name]
     ```
-*		
-     安装插件 
-    ```shell
-    #扩展插件
-    pip install jupyter_contrib_nbextensions
-    jupyter contrib nbextension install --user
-    ```
-    
-    
+
+# Jupyter 设置
+
+## 安装插件 
+
+```shell
+#扩展插件
+pip install jupyter_contrib_nbextensions
+jupyter contrib nbextension install --user
+```
+
+## 启动设置
+
+```shell
+# 生成配置文件
+jupyter notebook --generate-config
+vim ~/.jupyter/jupyter_notebook_config.py
+#添加如下内容
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port = 8799
+# md5密码
+c.NotebookApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$x81X1QyBJW+2CcokG8kdzA$JKs9Y3q5Xyi/pb/9I9skD1EQpcwcPePu9hjaemJ+8bk'
+```
+
+## 权限问题
+
+```shell
+# jupyter内置页面遇到权限问题，可考虑通过如下方式解决
+sudo chown -R luoyong /usr/share/jupyter/nbconvert/templates/
+```
+
