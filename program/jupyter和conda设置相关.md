@@ -60,6 +60,7 @@
     conda rename [-h] [-n ENVIRONMENT | -p PATH] [--force] [-d] destination
     #删除内核
     jupyter kernelspec remove kernelname
+    
     ```
     解决重启实例后新建虚拟环境相关依赖被重置问题
     
@@ -105,9 +106,16 @@
     conda env create -f environment.yml
     ```
     
-    
 
-# pip配置
+- 安装tensorflow
+
+  ```shell
+  conda create --name tf1.15 python=3.7
+  conda install tensorflow-gpu=1.15
+  python3 -c "import tensorflow as tf; print(tf.test.is_gpu_available())"
+  ```
+
+# pip配
 
 *   源配置
     ```shell
@@ -126,17 +134,36 @@ jupyter contrib nbextension install --user
 
 ## 启动设置
 
-```shell
-# 生成配置文件
-jupyter notebook --generate-config
-vim ~/.jupyter/jupyter_notebook_config.py
-#添加如下内容
-c.NotebookApp.ip = '*'
-c.NotebookApp.open_browser = False
-c.NotebookApp.port = 8799
-# md5密码
-c.NotebookApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$x81X1QyBJW+2CcokG8kdzA$JKs9Y3q5Xyi/pb/9I9skD1EQpcwcPePu9hjaemJ+8bk'
-```
+- jupyter notebook
+
+  ```shell
+  # 生成配置文件
+  jupyter notebook --generate-config
+  vim ~/.jupyter/jupyter_notebook_config.py
+  #添加如下内容
+  c.NotebookApp.allow_root = True
+  c.NotebookApp.open_browser = False
+  c.NotebookApp.ip = '*'
+  c.NotebookApp.port = 8799
+  # md5密码
+  c.NotebookApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$x81X1QyBJW+2CcokG8kdzA$JKs9Y3q5Xyi/pb/9I9skD1EQpcwcPePu9hjaemJ+8bk'
+  ```
+
+- jupyter lab
+
+  ```shell
+  jupyter lab --generate-config
+  vim ~/.jupyter/jupyter_lab_config.py
+  #添加如下内容
+  c.ServerApp.allow_root = True
+  c.ServerApp.port = 8799
+  c.ServerApp.ip = '*'
+  c.ServerApp.open_browser = False
+  # md5密码
+  c.ServerApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$x81X1QyBJW+2CcokG8kdzA$JKs9Y3q5Xyi/pb/9I9skD1EQpcwcPePu9hjaemJ+8bk'
+  ```
+
+  
 
 ## 权限问题
 

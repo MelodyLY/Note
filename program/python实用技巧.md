@@ -104,3 +104,24 @@ logger.error("this is an error message")
 logger.critical("this is a critical message")
 ```
 
+# tensorflow设置
+
+```python
+import tensorflow as tf
+# 查看tf版本
+print(tf.__version__)
+# 测试gpu是否可用
+print(tf.test.is_gpu_available())
+# 查看gpu列表
+tf.config.experimental.list_physical_devices(device_type='GPU')
+# 设置显存按需增长，防止程序独占gpu显存
+if tf.__version__.startswith('1.'):  # tensorflow 1
+    config = tf.ConfigProto()  # allow_soft_placement=True
+    config.gpu_options.allow_growth = True
+    sess = tf.Session(config=config)
+else:  # tensorflow 2
+    gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
+    for gpu in gpus:
+        tf.config.experimental.set_memory_growth(gpu, True)
+```
+
