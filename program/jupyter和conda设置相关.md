@@ -154,13 +154,15 @@ jupyter contrib nbextension install --user
   ```shell
   jupyter lab --generate-config
   vim ~/.jupyter/jupyter_lab_config.py
-  #添加如下内容
+  # 添加如下内容
   c.ServerApp.allow_root = True
   c.ServerApp.port = 8799
   c.ServerApp.ip = '*'
   c.ServerApp.open_browser = False
   # md5密码
   c.ServerApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$x81X1QyBJW+2CcokG8kdzA$JKs9Y3q5Xyi/pb/9I9skD1EQpcwcPePu9hjaemJ+8bk'
+  # 解决无法删除文件问题
+  c.FileContentsManager.delete_to_trash = False
   ```
 
   

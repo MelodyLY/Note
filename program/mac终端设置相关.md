@@ -18,7 +18,7 @@ source ~/.zshrc
 #4.设置代理
 echo export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api" >> ~/.zshrc
 echo export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git" >> ~/.zshrc
-echo export export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles" >> ~/.zshrc
+echo export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles" >> ~/.zshrc
 source ~/.zshrc
 ```
 
