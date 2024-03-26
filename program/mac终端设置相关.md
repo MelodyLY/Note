@@ -75,5 +75,11 @@ sudo chflags nohidden /opt
 sudo chflags hidden opt
 ```
 
+# idea
 
+## 配置
 
+- 主题：One Dark
+- 字体：Inconsolata
+- Size：14
+- Line Height：1.2
