@@ -165,6 +165,16 @@ jupyter contrib nbextension install --user
   c.FileContentsManager.delete_to_trash = False
   ```
 
+  ```shell
+  d=`date +%Y%m%d%H%M%S`
+  path=$1
+  port=$2
+  echo $d
+  echo $path
+  echo $port
+  nohup jupyter lab --notebook-dir=$path --port=$port >./log/jupyter/jupyter_log_$d.txt 2>&1 &
+  ```
+
   
 
 ## 权限问题
